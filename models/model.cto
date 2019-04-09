@@ -17,3 +17,8 @@ transaction AccountTransfer {
 --> Account to
 o Double amount
 }
+
+transaction TopUpAccount {
+  --> Account to
+  o Double amount
+}
