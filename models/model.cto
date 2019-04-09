@@ -22,3 +22,8 @@ transaction TopUpAccount {
   --> Account to
   o Double amount
 }
+
+transaction Payment {
+  --> Account from
+  o Double amount
+}
