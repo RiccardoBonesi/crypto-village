@@ -1,5 +1,10 @@
 namespace org.digitalpayment
 
+// TODO: 
+// - family
+// - token (?)
+// - 
+
 asset Account identified by accountId {
   o String accountId
   --> Customer owner
