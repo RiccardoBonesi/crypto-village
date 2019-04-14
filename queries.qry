@@ -1,0 +1,12 @@
+query selectAccounts {
+  description: "Select all accounts"
+  statement:
+      SELECT org.digitalpayment.Account
+}
+
+query selectAccountByOwner {
+  description: "Select account of the specified owner user"
+  statement:
+      SELECT org.digitalpayment.Account
+          WHERE (owner == _$owner)
+}

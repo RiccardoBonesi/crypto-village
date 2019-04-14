@@ -32,3 +32,7 @@ transaction Payment {
   --> Account from
   o Double amount
 }
+
+event PaymentNotification {
+    --> Account account
+}

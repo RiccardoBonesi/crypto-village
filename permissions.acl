@@ -38,7 +38,7 @@ rule R3_CustomersSeeOwnHistoryOnly {
 }
 
 
-//--------------- ADMIN --------------------
+//-------------------------------------
 
 rule SystemACL {
     description:  "System ACL to permit all access"
