@@ -15,6 +15,7 @@ participant Customer identified by customerId {
   o String customerId
   o String firstname
   o String lastname
+  --> Account[] family optional
 }
 
 transaction AccountTransfer {
