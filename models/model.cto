@@ -1,10 +1,5 @@
 namespace org.digitalpayment
 
-// TODO: 
-// - family
-// - token (?)
-// - 
-
 asset Account identified by accountId {
   o String accountId
   --> Customer owner
@@ -36,4 +31,28 @@ transaction Payment {
 
 event PaymentNotification {
     --> Account account
+}
+
+asset Ticket identified by ticketId {
+  o String ticketId
+  o Double price
+  --> Lottery lottery
+  --> Account ticketOwner
+}
+
+asset Lottery identified by lotteryId {
+  o String lotteryId
+  // o DateTime date 
+  o Ticket[] tickets
+  o Integer currentCount
+  o Integer drawCount
+  o Double price
+  o Double amount
+  o String status  
+}
+
+transaction BuyTicket {
+  --> Ticket ticketDetails
+  --> Lottery lottery
+  --> Account ticketOwner
 }

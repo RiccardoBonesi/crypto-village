@@ -1,3 +1,12 @@
+// Customers can't see lotteries
+rule R0_CustomerSeeLotteries {
+  description: "Customers can't see lotteries"
+  participant: "org.digitalpayment.Customer"
+  operation: READ
+  resource: "org.digitalpayment.Lottery"  
+  action: DENY
+}
+
 // Customers can see and update their own record only
 rule R1a_CustomerSeeUpdateThemselvesOnly {
   description: "Customers can see and update their own record only"
