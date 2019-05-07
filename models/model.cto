@@ -45,7 +45,7 @@ asset Lottery identified by lotteryId {
   // o DateTime date 
   o Ticket[] tickets
   o Integer currentCount
-  // o Integer participants
+  o Integer participants default = 0
   o Integer ticketsPerUser
   o Double price
   o Double amount
