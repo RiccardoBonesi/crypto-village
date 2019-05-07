@@ -45,15 +45,20 @@ asset Lottery identified by lotteryId {
   // o DateTime date 
   o Ticket[] tickets
   o Integer currentCount
-  o Integer drawCount
+  // o Integer participants
   o Integer ticketsPerUser
   o Double price
   o Double amount
-  o String status  
+  --> Ticket winner optional
+  o String status  default = "OPEN"
 }
 
 transaction BuyTicket {
   --> Ticket ticketDetails
   --> Lottery lottery
   --> Account ticketOwner
+}
+
+transaction DrawLottery {  
+  --> Lottery lottery  
 }
