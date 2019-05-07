@@ -39,7 +39,7 @@ event PaymentNotification {
     --> Account account
 }
 
-asset Ticket identified by ticketId {
+asset LotteryTicket identified by ticketId {
   o String ticketId
   o Double price
   --> Lottery lottery
@@ -49,18 +49,18 @@ asset Ticket identified by ticketId {
 asset Lottery identified by lotteryId {
   o String lotteryId
   // o DateTime date 
-  o Ticket[] tickets
+  o LotteryTicket[] tickets
   o Integer currentCount
   o Integer participants default = 0
   o Integer ticketsPerUser
   o Double price
   o Double amount
-  --> Ticket winner optional
+  --> LotteryTicket winner optional
   o String status  default = "OPEN"
 }
 
-transaction BuyTicket {
-  --> Ticket ticketDetails
+transaction BuyLotteryTicket {
+  --> LotteryTicket ticketDetails
   --> Lottery lottery
   --> Account ticketOwner
 }
