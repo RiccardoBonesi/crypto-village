@@ -13,6 +13,11 @@ participant Customer identified by customerId {
   --> Account[] family optional
 }
 
+asset Shop identified by shopId {
+  o String shopId
+  o String ShopName
+}
+
 transaction AccountTransfer {
 --> Account from
 --> Account to
@@ -26,6 +31,7 @@ transaction TopUpAccount {
 
 transaction Payment {
   --> Account from
+  --> Shop shop
   o Double amount
 }
 
