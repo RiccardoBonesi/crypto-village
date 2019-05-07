@@ -46,6 +46,7 @@ asset Lottery identified by lotteryId {
   o Ticket[] tickets
   o Integer currentCount
   o Integer drawCount
+  o Integer ticketsPerUser
   o Double price
   o Double amount
   o String status  
