@@ -43,7 +43,7 @@ asset Ticket identified by ticketId {
   o String ticketId
   o Double price
   --> Lottery lottery
-  --> Account ticketOwner
+  --> Customer ticketOwner
 }
 
 asset Lottery identified by lotteryId {
@@ -67,4 +67,17 @@ transaction BuyTicket {
 
 transaction DrawLottery {  
   --> Lottery lottery  
+}
+
+asset Trip identified by tripId {
+  o String tripId
+  o String tripName
+  o Customer[] participants
+  o Integer maxParticipants
+  o String status  default = "OPEN"
+}
+
+transaction BookTrip {
+  --> Trip trip
+  --> Customer booker
 }
