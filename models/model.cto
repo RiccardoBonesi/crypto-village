@@ -50,12 +50,13 @@ asset Lottery identified by lotteryId {
   o String lotteryId
   // o DateTime date 
   o LotteryTicket[] tickets
-  o Integer currentCount
+  o Integer num_tickets
   o Integer participants default = 0
-  o Integer ticketsPerUser
+  o Integer ticketsPerUser default = 1
   o Double price
   o Double amount
-  --> LotteryTicket winner optional
+  o Integer num_winners default = 1 
+  o LotteryTicket[] winners
   o String status  default = "OPEN"
 }
 
