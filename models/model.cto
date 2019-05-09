@@ -13,9 +13,16 @@ participant Customer identified by customerId {
   --> Account[] family optional
 }
 
-asset Shop identified by shopId {
-  o String shopId
-  o String ShopName
+participant StoreOwner identified by ownerId {
+  o String ownerId
+  o String ownerName
+}
+
+asset Store identified by storeId {
+  o String storeId
+  o String StoreName
+  --> StoreOwner storeOwner
+  o Integer seats optional
 }
 
 transaction AccountTransfer {
@@ -31,7 +38,7 @@ transaction TopUpAccount {
 
 transaction Payment {
   --> Account from
-  --> Shop shop
+  --> Store store
   o Double amount
 }
 
@@ -73,6 +80,7 @@ transaction DrawLottery {
 asset Trip identified by tripId {
   o String tripId
   o String tripName
+  o DateTime date default="2019-05-20"
   o Customer[] participants
   o Integer maxParticipants
   o String status  default = "OPEN"
@@ -82,3 +90,36 @@ transaction BookTrip {
   --> Trip trip
   --> Customer booker
 }
+/*
+transaction BookTable {
+  --> Store store
+  o Integer seats
+}
+*/
+asset BeachUmbrella identified by beachUmbrellaId{
+  o String beachUmbrellaId  
+  o BeachUmbrellaReservation[] reservations
+}
+
+asset BeachUmbrellaReservation identified by reservationId {
+  o String reservationId
+  --> Beach beach
+  --> BeachUmbrella beachUmbrella
+  o DateTime startDate
+  o DateTime endDate
+}
+
+asset Beach identified by beachId {
+  o String beachId
+  --> BeachUmbrella[] beachUmbrellas
+}
+
+transaction BookBeachUmbrella {
+  --> Beach beach
+  --> BeachUmbrella beachUmbrella
+  --> BeachUmbrellaReservation reservationDetails
+  o DateTime startDate
+  o DateTime endDate
+}
+
+// transaction per eliminare prenotazione ombrellone
