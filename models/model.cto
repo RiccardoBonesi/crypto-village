@@ -96,6 +96,8 @@ transaction BookTable {
   o Integer seats
 }
 */
+// restaurant extends shop?
+
 asset BeachUmbrella identified by beachUmbrellaId{
   o String beachUmbrellaId  
   o BeachUmbrellaReservation[] reservations
@@ -118,8 +120,8 @@ transaction BookBeachUmbrella {
   --> Beach beach
   --> BeachUmbrella beachUmbrella
   --> BeachUmbrellaReservation reservationDetails
-  o DateTime startDate
-  o DateTime endDate
+  o DateTime startDate default="2019-05-20"
+  o DateTime endDate default="2019-05-30"
 }
 
 // transaction per eliminare prenotazione ombrellone
