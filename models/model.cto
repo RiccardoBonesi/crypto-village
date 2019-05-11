@@ -100,6 +100,7 @@ transaction BookTable {
 
 asset BeachUmbrella identified by beachUmbrellaId{
   o String beachUmbrellaId  
+  --> Beach beach 
   o BeachUmbrellaReservation[] reservations
 }
 
@@ -107,8 +108,10 @@ asset BeachUmbrellaReservation identified by reservationId {
   o String reservationId
   --> Beach beach
   --> BeachUmbrella beachUmbrella
+  --> Customer customer
   o DateTime startDate
   o DateTime endDate
+  o Integer days
 }
 
 asset Beach identified by beachId {
@@ -120,8 +123,7 @@ transaction BookBeachUmbrella {
   --> Beach beach
   --> BeachUmbrella beachUmbrella
   --> BeachUmbrellaReservation reservationDetails
+  --> Customer customer
   o DateTime startDate default="2019-05-20"
   o DateTime endDate default="2019-05-30"
 }
-
-// transaction per eliminare prenotazione ombrellone
