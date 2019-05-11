@@ -22,7 +22,6 @@ asset Store identified by storeId {
   o String storeId
   o String StoreName
   --> StoreOwner storeOwner
-  o Integer seats optional
 }
 
 transaction AccountTransfer {
@@ -90,13 +89,6 @@ transaction BookTrip {
   --> Trip trip
   --> Customer booker
 }
-/*
-transaction BookTable {
-  --> Store store
-  o Integer seats
-}
-*/
-// restaurant extends shop?
 
 asset BeachUmbrella identified by beachUmbrellaId{
   o String beachUmbrellaId  
@@ -127,3 +119,41 @@ transaction BookBeachUmbrella {
   o DateTime startDate default="2019-05-20"
   o DateTime endDate default="2019-05-30"
 }
+// delete umbrella reservation?
+
+
+asset Restaurant identified by restaurantId extends Store {
+  o String restaurantId
+  o Integer totalSeats  
+  --> DayRestaurant[] dailyReservations
+  //--> RestaurantReservation[] reservations
+  // fare query che ritorna prenotazioni di oggi
+}
+
+asset RestaurantReservation identified by reservationId {
+  // prenotazione normale
+  o String reservationId
+  --> Restaurant restaurant
+  o DateTime date
+  // check lunch/dinner qui o con un controllo orari
+
+}
+
+asset DayRestaurant identified by id {
+  o String id
+  o DateTime date
+  --> Restaurant restaurant  
+  o Integer availableSeats
+  --> RestaurantReservation[] reservations
+}
+
+
+transaction BookRestaurant {
+  --> Restaurant restaurant
+  --> RestaurantReservation reservationDetails
+  o Integer seats
+  o DateTime date
+  
+}
+// day-restaurant reservation asset:
+// creo oggetto che si riferisce ad un ristorante e giorno preciso che tiene conto di prenotazioni e posti disponibili
