@@ -125,7 +125,7 @@ transaction BookBeachUmbrella {
 asset Restaurant identified by restaurantId extends Store {
   o String restaurantId
   o Integer totalSeats  
-  --> DayRestaurant[] dailyReservations
+  --> DailyReservations[] dailyReservations
   //--> RestaurantReservation[] reservations
   // fare query che ritorna prenotazioni di oggi
 }
@@ -139,7 +139,8 @@ asset RestaurantReservation identified by reservationId {
 
 }
 
-asset DayRestaurant identified by id {
+asset DailyReservations identified by id {
+  // qui l'id dovrebbe essere la data
   o String id
   o DateTime date
   --> Restaurant restaurant  
@@ -157,3 +158,7 @@ transaction BookRestaurant {
 }
 // day-restaurant reservation asset:
 // creo oggetto che si riferisce ad un ristorante e giorno preciso che tiene conto di prenotazioni e posti disponibili
+
+// matrice quadrata giorno-ristorante--> ogni cella contiene numero di posti che viene scalato
+
+// reservation contiene un array di dayrestaurant (ogni elemento rappresenta un giorno e contiene a sua volta un array di prenotazioni per quel giorno)
