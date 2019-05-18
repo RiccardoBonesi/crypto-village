@@ -18,6 +18,7 @@ participant StoreOwner identified by ownerId {
   o String ownerName
 }
 
+// rendere abstract ? ed estendere con restaurant e shop
 asset Store identified by storeId {
   o String storeId
   o String StoreName
@@ -125,8 +126,7 @@ transaction BookBeachUmbrella {
 asset Restaurant identified by restaurantId extends Store {
   o String restaurantId
   o Integer totalSeats  
-  --> DailyReservations[] dailyReservations
-  //--> RestaurantReservation[] reservations
+  o DailyReservations[] dailyReservations  
   // fare query che ritorna prenotazioni di oggi
 }
 
@@ -135,17 +135,16 @@ asset RestaurantReservation identified by reservationId {
   o String reservationId
   --> Restaurant restaurant
   o DateTime date
+  o Integer seats
   // check lunch/dinner qui o con un controllo orari
-
 }
 
-asset DailyReservations identified by id {
-  // qui l'id dovrebbe essere la data
-  o String id
+asset DailyReservations identified by dailyId {  
+  o String dailyId
   o DateTime date
   --> Restaurant restaurant  
   o Integer availableSeats
-  --> RestaurantReservation[] reservations
+  o RestaurantReservation[] reservations
 }
 
 
@@ -156,9 +155,3 @@ transaction BookRestaurant {
   o DateTime date
   
 }
-// day-restaurant reservation asset:
-// creo oggetto che si riferisce ad un ristorante e giorno preciso che tiene conto di prenotazioni e posti disponibili
-
-// matrice quadrata giorno-ristorante--> ogni cella contiene numero di posti che viene scalato
-
-// reservation contiene un array di dayrestaurant (ogni elemento rappresenta un giorno e contiene a sua volta un array di prenotazioni per quel giorno)
