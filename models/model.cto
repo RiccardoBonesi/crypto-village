@@ -143,8 +143,9 @@ asset Restaurant identified by restaurantId extends Store {
 asset RestaurantReservation identified by reservationId {
   o String reservationId
   --> Restaurant restaurant
+  --> Customer customer
   o DateTime date
-  o Integer seats
+  o Integer seats  
   // check lunch/dinner qui o con un controllo orari
 }
 
@@ -160,6 +161,13 @@ asset DailyReservations identified by dailyId {
 transaction BookRestaurant {
   --> Restaurant restaurant
   --> RestaurantReservation reservationDetails
+  --> Customer customer
   o Integer seats
+  o DateTime date 
+}
+
+transaction DeleteRestaurantReservation {
+  --> Customer customer
+  --> Restaurant restaurant
   o DateTime date  
 }
