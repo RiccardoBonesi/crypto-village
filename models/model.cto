@@ -18,11 +18,14 @@ participant StoreOwner identified by ownerId {
   o String ownerName
 }
 
-// rendere abstract ? ed estendere con restaurant e shop
-asset Store identified by storeId {
+abstract asset Store identified by storeId {
   o String storeId
   o String StoreName
   --> StoreOwner storeOwner
+}
+
+asset Shop identified by shopId extends Store {
+  o String shopId
 }
 
 transaction AccountTransfer {
@@ -120,7 +123,14 @@ transaction BookBeachUmbrella {
   o DateTime startDate default="2019-05-20"
   o DateTime endDate default="2019-05-30"
 }
-// delete umbrella reservation?
+
+
+transaction DeleteUmbrellaReservation {  
+  --> BeachUmbrella beachUmbrella
+  --> Customer customer
+  o DateTime startDate
+  o DateTime endDate
+}
 
 
 asset Restaurant identified by restaurantId extends Store {
@@ -131,7 +141,6 @@ asset Restaurant identified by restaurantId extends Store {
 }
 
 asset RestaurantReservation identified by reservationId {
-  // prenotazione normale
   o String reservationId
   --> Restaurant restaurant
   o DateTime date
@@ -152,6 +161,5 @@ transaction BookRestaurant {
   --> Restaurant restaurant
   --> RestaurantReservation reservationDetails
   o Integer seats
-  o DateTime date
-  
+  o DateTime date  
 }
