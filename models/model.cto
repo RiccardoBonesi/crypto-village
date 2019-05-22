@@ -86,12 +86,18 @@ asset Trip identified by tripId {
   o DateTime date default="2019-05-20"
   o Customer[] participants
   o Integer maxParticipants
+  o Integer currentParticipants
   o String status  default = "OPEN"
 }
 
 transaction BookTrip {
   --> Trip trip
   --> Customer booker
+}
+
+transaction DeleteTripReservation {
+  --> Trip trip
+  --> Customer customer
 }
 
 asset BeachUmbrella identified by beachUmbrellaId{
