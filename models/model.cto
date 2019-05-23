@@ -67,6 +67,7 @@ asset Lottery identified by lotteryId {
   o Double amount
   o Integer num_winners default = 1 
   o LotteryTicket[] winners
+  o Integer maxParticipants
   o String status  default = "OPEN"
 }
 
