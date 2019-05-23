@@ -104,7 +104,7 @@ transaction DeleteTripReservation {
 asset BeachUmbrella identified by beachUmbrellaId{
   o String beachUmbrellaId  
   --> Beach beach 
-  o BeachUmbrellaReservation[] reservations
+  --> BeachUmbrellaReservation[] reservations
 }
 
 asset BeachUmbrellaReservation identified by reservationId {

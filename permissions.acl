@@ -8,7 +8,7 @@
 // ********************** LOTTERY ******************
 
 rule CustomerSeeUpdateLottery {
-  description: "Customers can't see and update lotteries"
+  description: "Customers can see and update lotteries"
   participant: "org.digitalpayment.Customer"
   operation: READ, UPDATE
   resource: "org.digitalpayment.Lottery"  
@@ -36,7 +36,7 @@ rule CustomerBuyLotteryTicket1 {
 // ******************************* TRIP ********************************************
 
 rule CustomerSeeUpdateTrip {
-  description: "Customers can't see and update lotteries"
+  description: "Customers can see and update trips"
   participant: "org.digitalpayment.Customer"
   operation: READ, UPDATE
   resource: "org.digitalpayment.Trip"  
@@ -61,7 +61,53 @@ rule CustomerDeleteTripreservation {
   action: ALLOW
 }
 
-// ******************************************************************************
+// ******************************* BeachUmbrella *****************************************
+
+rule CustomerSeeBeach {
+  description: "Customers can see beaches"
+  participant: "org.digitalpayment.Customer"
+  operation: READ
+  resource: "org.digitalpayment.Beach"  
+  action: ALLOW
+}
+
+rule CustomerSeeUpdateBeachUmbrella {
+  description: "Customers can see and update beach umbrellas"
+  participant: "org.digitalpayment.Customer"
+  operation: READ, UPDATE
+  resource: "org.digitalpayment.BeachUmbrella"  
+  action: ALLOW
+}
+
+rule CustomerBookBeachUmbrellaReservation {
+  description: "Customers can book beach umbrellas only for themselves"
+  participant(t): "org.digitalpayment.Customer"
+  operation: ALL
+  resource(v): "org.digitalpayment.BeachUmbrellaReservation"
+  condition: (t.getIdentifier() == v.customer.getIdentifier())
+  action: ALLOW
+}
+
+rule CustomerBookBeachUmbrella {
+  description: "Customers can book beach umbrellas only for themselves"
+  participant(t): "org.digitalpayment.Customer"
+  operation: ALL
+  resource(v): "org.digitalpayment.BookBeachUmbrella"
+  condition: (t.getIdentifier() == v.customer.getIdentifier())
+  action: ALLOW
+}
+
+rule CustomerDeleteUmbrellaReservation {
+  description: "Customers can delete beach umbrellas reservation only for themselves"
+  participant(t): "org.digitalpayment.Customer"
+  operation: ALL
+  resource(v): "org.digitalpayment.DeleteUmbrellaReservation"
+  condition: (t.getIdentifier() == v.customer.getIdentifier())
+  action: ALLOW
+}
+
+
+// **************************************************************************************
 
 
 // Customers can see and update their own record only
