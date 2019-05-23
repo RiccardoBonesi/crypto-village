@@ -1,11 +1,42 @@
-// Customers can't see lotteries
-rule R0_CustomerSeeLotteries {
-  description: "Customers can't see lotteries"
+/*
+  TODO
+  - gli utenti non possono creare lotterie - trip - restaurant - umbrella - beach
+  - gli utenti non possono fare prenotazoni per altri utenti
+*/
+
+
+// ********************** LOTTERY ******************
+
+rule CustomerSeeUpdateLotteries {
+  description: "Customers can't see and update lotteries"
   participant: "org.digitalpayment.Customer"
-  operation: READ
+  operation: READ, UPDATE
   resource: "org.digitalpayment.Lottery"  
-  action: DENY
+  action: ALLOW
 }
+
+// Customers can buy lotteryTicket only with their Account
+rule CustomerBuyLotteryTicket {
+  description: "Customers can buy lotteryTicket only with their Account"
+  participant(t): "org.digitalpayment.Customer"
+  operation: ALL
+  resource(v): "org.digitalpayment.LotteryTicket"
+  condition: (v.ticketOwner.getIdentifier() == t.getIdentifier())
+  action: ALLOW
+}
+
+// Customers can buy lotteryTicket only with their Account
+rule CustomerBuyLotteryTicket1 {
+  description: "Customers can buy lotteryTicket only with their Account"
+  participant(t): "org.digitalpayment.Customer"
+  operation: ALL
+  resource(v): "org.digitalpayment.BuyLotteryTicket"
+  condition: (v.ticketOwner.owner.getIdentifier() == t.getIdentifier())
+  action: ALLOW
+}
+
+// *************************************************************************************
+
 
 // Customers can see and update their own record only
 rule R1a_CustomerSeeUpdateThemselvesOnly {
