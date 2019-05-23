@@ -1,9 +1,3 @@
-/*
-  TODO
-  - gli utenti non possono creare lotterie - trip - restaurant - umbrella - beach
-  - gli utenti non possono fare prenotazoni per altri utenti
-*/
-
 
 // ********************** LOTTERY ******************
 
@@ -107,7 +101,52 @@ rule CustomerDeleteUmbrellaReservation {
 }
 
 
-// **************************************************************************************
+// ******************************** RESTAURANT ***********************************************
+
+rule CustomerSeeUpdateRestaurant {
+  description: "Customers can see and update restaurants"
+  participant: "org.digitalpayment.Customer"
+  operation: READ, UPDATE
+  resource: "org.digitalpayment.Restaurant"  
+  action: ALLOW
+}
+
+rule CustomerBookDailyReservations {
+  description: "Customers can book beach umbrellas only for themselves"
+  participant: "org.digitalpayment.Customer"
+  operation: ALL
+  resource: "org.digitalpayment.DailyReservations"
+  action: ALLOW
+}
+
+rule CustomerBookRestaurantReservation {
+  description: "Customers can book beach umbrellas only for themselves"
+  participant(t): "org.digitalpayment.Customer"
+  operation: ALL
+  resource(v): "org.digitalpayment.RestaurantReservation"
+  condition: (t.getIdentifier() == v.customer.getIdentifier())
+  action: ALLOW
+}
+
+rule CustomerBookRestaurant {
+  description: "Customers can book beach umbrellas only for themselves"
+  participant(t): "org.digitalpayment.Customer"
+  operation: ALL
+  resource(v): "org.digitalpayment.BookRestaurant"
+  condition: (t.getIdentifier() == v.customer.getIdentifier())
+  action: ALLOW
+}
+
+rule CustomerDeleteRestaurantReservation {
+  description: "Customers can book beach umbrellas only for themselves"
+  participant(t): "org.digitalpayment.Customer"
+  operation: ALL
+  resource(v): "org.digitalpayment.DeleteRestaurantReservation"
+  condition: (t.getIdentifier() == v.customer.getIdentifier())
+  action: ALLOW
+}
+
+// ********************************************************************************************
 
 
 // Customers can see and update their own record only
