@@ -49,6 +49,11 @@ event PaymentNotification {
     --> Account account
 }
 
+
+/*********************
+      LOTTERY
+**********************/
+
 asset LotteryTicket identified by ticketId {
   o String ticketId
   o Double price
@@ -57,8 +62,7 @@ asset LotteryTicket identified by ticketId {
 }
 
 asset Lottery identified by lotteryId {
-  o String lotteryId
-  // o DateTime date 
+  o String lotteryId  
   o LotteryTicket[] tickets
   o Integer num_tickets
   o Integer participants default = 0
@@ -81,6 +85,10 @@ transaction DrawLottery {
   --> Lottery lottery  
 }
 
+/*********************
+      TRIP
+**********************/
+
 asset Trip identified by tripId {
   o String tripId
   o String tripName
@@ -100,6 +108,10 @@ transaction DeleteTripReservation {
   --> Trip trip
   --> Customer customer
 }
+
+/*********************
+      BEACH UMBRELLA
+**********************/
 
 asset BeachUmbrella identified by beachUmbrellaId{
   o String beachUmbrellaId  
@@ -139,12 +151,15 @@ transaction DeleteUmbrellaReservation {
   o DateTime endDate
 }
 
+/*********************
+      RESTAURANT
+**********************/
+
 
 asset Restaurant identified by restaurantId extends Store {
   o String restaurantId
   o Integer totalSeats  
   o DailyReservations[] dailyReservations  
-  // fare query che ritorna prenotazioni di oggi
 }
 
 asset RestaurantReservation identified by reservationId {
@@ -153,7 +168,6 @@ asset RestaurantReservation identified by reservationId {
   --> Customer customer
   o DateTime date
   o Integer seats  
-  // check lunch/dinner qui o con un controllo orari
 }
 
 asset DailyReservations identified by dailyId {  
