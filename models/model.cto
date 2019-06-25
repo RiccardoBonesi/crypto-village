@@ -1,5 +1,7 @@
 namespace org.digitalpayment
 
+// TODO: aggiugere nuovo participant "village manager" che può creare eventi, lotterie ecc
+
 asset Account identified by accountId {
   o String accountId
   --> Customer owner
@@ -86,12 +88,12 @@ transaction DrawLottery {
 }
 
 /*********************
-      TRIP
+      EVENT
 **********************/
 
-asset Trip identified by tripId {
-  o String tripId
-  o String tripName
+asset RealEvent identified by eventId {
+  o String eventId
+  o String eventName
   o DateTime date default="2019-05-20"
   o Customer[] participants
   o Integer maxParticipants
@@ -99,13 +101,13 @@ asset Trip identified by tripId {
   o String status  default = "OPEN"
 }
 
-transaction BookTrip {
-  --> Trip trip
+transaction BookEvent {
+  --> RealEvent event
   --> Customer booker
 }
 
-transaction DeleteTripReservation {
-  --> Trip trip
+transaction DeleteEventReservation {
+  --> RealEvent event
   --> Customer customer
 }
 

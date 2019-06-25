@@ -27,30 +27,30 @@ rule CustomerBuyLotteryTicket1 {
   action: ALLOW
 }
 
-// ******************************* TRIP ********************************************
+// ******************************* EVENT ********************************************
 
-rule CustomerSeeUpdateTrip {
-  description: "Customers can see and update trips"
+rule CustomerSeeUpdateEvent {
+  description: "Customers can see and update events"
   participant: "org.digitalpayment.Customer"
   operation: READ, UPDATE
-  resource: "org.digitalpayment.Trip"  
+  resource: "org.digitalpayment.RealEvent"  
   action: ALLOW
 }
 
-rule CustomerBookTrip {
-  description: "Customers can book trip only for themselves"
+rule CustomerBookEvent {
+  description: "Customers can book event only for themselves"
   participant(t): "org.digitalpayment.Customer"
   operation: ALL
-  resource(v): "org.digitalpayment.BookTrip"
+  resource(v): "org.digitalpayment.BookEvent"
   condition: (t.getIdentifier() == v.booker.getIdentifier())
   action: ALLOW
 }
 
-rule CustomerDeleteTripreservation {
-  description: "Customers can only delete their trip reservation"
+rule CustomerDeleteEventreservation {
+  description: "Customers can only delete their event reservation"
   participant(t): "org.digitalpayment.Customer"
   operation: ALL
-  resource(v): "org.digitalpayment.DeleteTripReservation"
+  resource(v): "org.digitalpayment.DeleteEventReservation"
   condition: (t.getIdentifier() == v.customer.getIdentifier())
   action: ALLOW
 }
