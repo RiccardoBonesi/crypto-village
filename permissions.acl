@@ -10,7 +10,7 @@ rule CustomerSeeUpdateLottery {
 }
 
 rule CustomerBuyLotteryTicket {
-  description: "Customers can buy lotteryTicket only with their Account"
+  description: "Customers can buy lotteryTicket only with their Wallet"
   participant(t): "org.digitalpayment.Customer"
   operation: ALL
   resource(v): "org.digitalpayment.LotteryTicket"
@@ -19,7 +19,7 @@ rule CustomerBuyLotteryTicket {
 }
 
 rule CustomerBuyLotteryTicket1 {
-  description: "Customers can buy lotteryTicket only with their Account"
+  description: "Customers can buy lotteryTicket only with their Wallet"
   participant(t): "org.digitalpayment.Customer"
   operation: ALL
   resource(v): "org.digitalpayment.BuyLotteryTicket"
@@ -159,12 +159,12 @@ rule R1a_CustomerSeeUpdateThemselvesOnly {
   action: ALLOW
 }
 
-// Customers can see/manage their own Account
-rule R1b_CustomerSeeTheirAccount {
-  description: "Customers can manage their own Account"
+// Customers can see/manage their own Wallet
+rule R1b_CustomerSeeTheirWallet {
+  description: "Customers can manage their own Wallet"
   participant(t): "org.digitalpayment.Customer"
   operation: ALL
-  resource(c): "org.digitalpayment.Account"
+  resource(c): "org.digitalpayment.Wallet"
   condition: (c.owner.getIdentifier() == t.getIdentifier())
   action: ALLOW
 }

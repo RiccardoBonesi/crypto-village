@@ -1,9 +1,7 @@
 namespace org.digitalpayment
 
-// TODO: aggiugere nuovo participant "village manager" che può creare eventi, lotterie ecc
-
-asset Account identified by accountId {
-  o String accountId
+asset Wallet identified by walletId {
+  o String walletId
   --> Customer owner
   o Double balance
 }
@@ -12,7 +10,7 @@ participant Customer identified by customerId {
   o String customerId
   o String firstname
   o String lastname
-  --> Account[] family optional
+  --> Customer[] family optional
 }
 
 participant StoreOwner identified by ownerId {
@@ -26,29 +24,25 @@ abstract asset Store identified by storeId {
   --> StoreOwner storeOwner
 }
 
-asset Shop identified by shopId extends Store {
-  o String shopId
-}
-
-transaction AccountTransfer {
---> Account from
---> Account to
+transaction WalletTransfer {
+--> Wallet from
+--> Wallet to
 o Double amount
 }
 
-transaction TopUpAccount {
-  --> Account to
+transaction TopUpWallet {
+  --> Wallet to
   o Double amount
 }
 
 transaction Payment {
-  --> Account from
+  --> Wallet from
   --> Store store
   o Double amount
 }
 
 event PaymentNotification {
-    --> Account account
+    --> Wallet wallet
 }
 
 
@@ -80,7 +74,7 @@ asset Lottery identified by lotteryId {
 transaction BuyLotteryTicket {
   --> LotteryTicket ticketDetails
   --> Lottery lottery
-  --> Account ticketOwner
+  --> Wallet ticketOwner
 }
 
 transaction DrawLottery {  

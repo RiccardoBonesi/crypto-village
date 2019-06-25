@@ -1,12 +1,12 @@
-query selectAccounts {
-  description: "Select all accounts"
+query selectWallets {
+  description: "Select all wallets"
   statement:
-      SELECT org.digitalpayment.Account
+      SELECT org.digitalpayment.Wallet
 }
 
-query selectAccountByOwner {
-  description: "Select account of the specified owner user"
+query selectWalletByOwner {
+  description: "Select wallet of the specified owner user"
   statement:
-      SELECT org.digitalpayment.Account
+      SELECT org.digitalpayment.Wallet
           WHERE (owner == _$owner)
 }
