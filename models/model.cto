@@ -1,4 +1,4 @@
-namespace org.digitalpayment
+namespace org.cryptovillage
 
 asset Wallet identified by walletId {
   o String walletId

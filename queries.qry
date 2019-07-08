@@ -1,12 +1,12 @@
 query selectWallets {
   description: "Select all wallets"
   statement:
-      SELECT org.digitalpayment.Wallet
+      SELECT org.cryptovillage.Wallet
 }
 
 query selectWalletByOwner {
   description: "Select wallet of the specified owner user"
   statement:
-      SELECT org.digitalpayment.Wallet
+      SELECT org.cryptovillage.Wallet
           WHERE (owner == _$owner)
 }

@@ -3,26 +3,26 @@
 
 rule CustomerSeeUpdateLottery {
   description: "Customers can see and update lotteries"
-  participant: "org.digitalpayment.Customer"
+  participant: "org.cryptovillage.Customer"
   operation: READ, UPDATE
-  resource: "org.digitalpayment.Lottery"  
+  resource: "org.cryptovillage.Lottery"  
   action: ALLOW
 }
 
 rule CustomerBuyLotteryTicket {
   description: "Customers can buy lotteryTicket only with their Wallet"
-  participant(t): "org.digitalpayment.Customer"
+  participant(t): "org.cryptovillage.Customer"
   operation: ALL
-  resource(v): "org.digitalpayment.LotteryTicket"
+  resource(v): "org.cryptovillage.LotteryTicket"
   condition: (v.ticketOwner.getIdentifier() == t.getIdentifier())
   action: ALLOW
 }
 
 rule CustomerBuyLotteryTicket1 {
   description: "Customers can buy lotteryTicket only with their Wallet"
-  participant(t): "org.digitalpayment.Customer"
+  participant(t): "org.cryptovillage.Customer"
   operation: ALL
-  resource(v): "org.digitalpayment.BuyLotteryTicket"
+  resource(v): "org.cryptovillage.BuyLotteryTicket"
   condition: (v.ticketOwner.owner.getIdentifier() == t.getIdentifier())
   action: ALLOW
 }
@@ -31,26 +31,26 @@ rule CustomerBuyLotteryTicket1 {
 
 rule CustomerSeeUpdateEvent {
   description: "Customers can see and update events"
-  participant: "org.digitalpayment.Customer"
+  participant: "org.cryptovillage.Customer"
   operation: READ, UPDATE
-  resource: "org.digitalpayment.RealEvent"  
+  resource: "org.cryptovillage.RealEvent"  
   action: ALLOW
 }
 
 rule CustomerBookEvent {
   description: "Customers can book event only for themselves"
-  participant(t): "org.digitalpayment.Customer"
+  participant(t): "org.cryptovillage.Customer"
   operation: ALL
-  resource(v): "org.digitalpayment.BookEvent"
+  resource(v): "org.cryptovillage.BookEvent"
   condition: (t.getIdentifier() == v.booker.getIdentifier())
   action: ALLOW
 }
 
 rule CustomerDeleteEventreservation {
   description: "Customers can only delete their event reservation"
-  participant(t): "org.digitalpayment.Customer"
+  participant(t): "org.cryptovillage.Customer"
   operation: ALL
-  resource(v): "org.digitalpayment.DeleteEventReservation"
+  resource(v): "org.cryptovillage.DeleteEventReservation"
   condition: (t.getIdentifier() == v.customer.getIdentifier())
   action: ALLOW
 }
@@ -59,43 +59,43 @@ rule CustomerDeleteEventreservation {
 
 rule CustomerSeeBeach {
   description: "Customers can see beaches"
-  participant: "org.digitalpayment.Customer"
+  participant: "org.cryptovillage.Customer"
   operation: READ
-  resource: "org.digitalpayment.Beach"  
+  resource: "org.cryptovillage.Beach"  
   action: ALLOW
 }
 
 rule CustomerSeeUpdateBeachUmbrella {
   description: "Customers can see and update beach umbrellas"
-  participant: "org.digitalpayment.Customer"
+  participant: "org.cryptovillage.Customer"
   operation: READ, UPDATE
-  resource: "org.digitalpayment.BeachUmbrella"  
+  resource: "org.cryptovillage.BeachUmbrella"  
   action: ALLOW
 }
 
 rule CustomerBookBeachUmbrellaReservation {
   description: "Customers can book beach umbrellas only for themselves"
-  participant(t): "org.digitalpayment.Customer"
+  participant(t): "org.cryptovillage.Customer"
   operation: ALL
-  resource(v): "org.digitalpayment.BeachUmbrellaReservation"
+  resource(v): "org.cryptovillage.BeachUmbrellaReservation"
   condition: (t.getIdentifier() == v.customer.getIdentifier())
   action: ALLOW
 }
 
 rule CustomerBookBeachUmbrella {
   description: "Customers can book beach umbrellas only for themselves"
-  participant(t): "org.digitalpayment.Customer"
+  participant(t): "org.cryptovillage.Customer"
   operation: ALL
-  resource(v): "org.digitalpayment.BookBeachUmbrella"
+  resource(v): "org.cryptovillage.BookBeachUmbrella"
   condition: (t.getIdentifier() == v.customer.getIdentifier())
   action: ALLOW
 }
 
 rule CustomerDeleteUmbrellaReservation {
   description: "Customers can delete beach umbrellas reservation only for themselves"
-  participant(t): "org.digitalpayment.Customer"
+  participant(t): "org.cryptovillage.Customer"
   operation: ALL
-  resource(v): "org.digitalpayment.DeleteUmbrellaReservation"
+  resource(v): "org.cryptovillage.DeleteUmbrellaReservation"
   condition: (t.getIdentifier() == v.customer.getIdentifier())
   action: ALLOW
 }
@@ -105,43 +105,43 @@ rule CustomerDeleteUmbrellaReservation {
 
 rule CustomerSeeUpdateRestaurant {
   description: "Customers can see and update restaurants"
-  participant: "org.digitalpayment.Customer"
+  participant: "org.cryptovillage.Customer"
   operation: READ, UPDATE
-  resource: "org.digitalpayment.Restaurant"  
+  resource: "org.cryptovillage.Restaurant"  
   action: ALLOW
 }
 
 rule CustomerBookDailyReservations {
   description: "Customers can book beach umbrellas only for themselves"
-  participant: "org.digitalpayment.Customer"
+  participant: "org.cryptovillage.Customer"
   operation: ALL
-  resource: "org.digitalpayment.DailyReservations"
+  resource: "org.cryptovillage.DailyReservations"
   action: ALLOW
 }
 
 rule CustomerBookRestaurantReservation {
   description: "Customers can book beach umbrellas only for themselves"
-  participant(t): "org.digitalpayment.Customer"
+  participant(t): "org.cryptovillage.Customer"
   operation: ALL
-  resource(v): "org.digitalpayment.RestaurantReservation"
+  resource(v): "org.cryptovillage.RestaurantReservation"
   condition: (t.getIdentifier() == v.customer.getIdentifier())
   action: ALLOW
 }
 
 rule CustomerBookRestaurant {
   description: "Customers can book beach umbrellas only for themselves"
-  participant(t): "org.digitalpayment.Customer"
+  participant(t): "org.cryptovillage.Customer"
   operation: ALL
-  resource(v): "org.digitalpayment.BookRestaurant"
+  resource(v): "org.cryptovillage.BookRestaurant"
   condition: (t.getIdentifier() == v.customer.getIdentifier())
   action: ALLOW
 }
 
 rule CustomerDeleteRestaurantReservation {
   description: "Customers can book beach umbrellas only for themselves"
-  participant(t): "org.digitalpayment.Customer"
+  participant(t): "org.cryptovillage.Customer"
   operation: ALL
-  resource(v): "org.digitalpayment.DeleteRestaurantReservation"
+  resource(v): "org.cryptovillage.DeleteRestaurantReservation"
   condition: (t.getIdentifier() == v.customer.getIdentifier())
   action: ALLOW
 }
@@ -152,9 +152,9 @@ rule CustomerDeleteRestaurantReservation {
 // Customers can see and update their own record only
 rule R1a_CustomerSeeUpdateThemselvesOnly {
   description: "Customers can see and update their own record only"
-  participant(t): "org.digitalpayment.Customer"
+  participant(t): "org.cryptovillage.Customer"
   operation: READ, UPDATE
-  resource(v): "org.digitalpayment.Customer"
+  resource(v): "org.cryptovillage.Customer"
   condition: (v.getIdentifier() == t.getIdentifier())
   action: ALLOW
 }
@@ -162,9 +162,9 @@ rule R1a_CustomerSeeUpdateThemselvesOnly {
 // Customers can see/manage their own Wallet
 rule R1b_CustomerSeeTheirWallet {
   description: "Customers can manage their own Wallet"
-  participant(t): "org.digitalpayment.Customer"
+  participant(t): "org.cryptovillage.Customer"
   operation: ALL
-  resource(c): "org.digitalpayment.Wallet"
+  resource(c): "org.cryptovillage.Wallet"
   condition: (c.owner.getIdentifier() == t.getIdentifier())
   action: ALLOW
 }
@@ -172,16 +172,16 @@ rule R1b_CustomerSeeTheirWallet {
 // Enable Customers to submit payment transaction
 rule R2_EnableCustomerPayment {
     description: "Enable Customers to submit payment transaction"
-    participant: "org.digitalpayment.Customer"
+    participant: "org.cryptovillage.Customer"
     operation: ALL
-    resource: "org.digitalpayment.Payment"
+    resource: "org.cryptovillage.Payment"
     action: ALLOW
 }
 
 // Allow Customers to see their own historical records only
 rule R3_CustomersSeeOwnHistoryOnly {
   description: "Customers should be able to see the history of their own transactions only"
-  participant(t): "org.digitalpayment.Customer"
+  participant(t): "org.cryptovillage.Customer"
   operation: READ
   resource(v): "org.hyperledger.composer.system.HistorianRecord"
   condition: (v.participantInvoking.getIdentifier() != t.getIdentifier())
