@@ -189,6 +189,10 @@ rule R3_CustomersSeeOwnHistoryOnly {
 }
 
 
+// TODO: VillageManager Rules 
+
+
+
 //-------------------------------------
 
 rule SystemACL {

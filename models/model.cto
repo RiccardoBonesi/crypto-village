@@ -18,10 +18,9 @@ participant StoreOwner identified by ownerId {
   o String ownerName
 }
 
-abstract asset Store identified by storeId {
-  o String storeId
-  o String StoreName
-  --> StoreOwner storeOwner
+participant VillageManager identified by managerId {
+  o String managerId
+  o String managerName
 }
 
 transaction WalletTransfer {
@@ -39,6 +38,12 @@ transaction Payment {
   --> Wallet from
   --> Store store
   o Double amount
+}
+
+abstract asset Store identified by storeId {
+  o String storeId
+  o String StoreName
+  --> StoreOwner storeOwner
 }
 
 event PaymentNotification {
