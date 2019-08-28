@@ -80,7 +80,7 @@ asset Lottery identified by lotteryId {
 }
 
 transaction BuyLotteryTicket {
-  --> LotteryTicket ticketDetails
+  //--> LotteryTicket ticketDetails
   --> Lottery lottery
   --> Wallet ticketOwner
 }
