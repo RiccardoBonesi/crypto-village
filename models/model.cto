@@ -40,10 +40,13 @@ transaction Payment {
   o Double amount
 }
 
-abstract asset Store identified by storeId {
-  o String storeId
-  o String StoreName
+abstract asset Store{
   --> StoreOwner storeOwner
+}
+
+asset Shop identified by shopId extends Store {
+  o String shopId
+  o String shopName
 }
 
 event PaymentNotification {
@@ -77,7 +80,7 @@ asset Lottery identified by lotteryId {
 }
 
 transaction BuyLotteryTicket {
-  --> LotteryTicket ticketDetails
+  //--> LotteryTicket ticketDetails
   --> Lottery lottery
   --> Wallet ticketOwner
 }
@@ -159,6 +162,7 @@ transaction DeleteUmbrellaReservation {
 
 asset Restaurant identified by restaurantId extends Store {
   o String restaurantId
+  o String restaurantName
   o Integer totalSeats  
   o DailyReservations[] dailyReservations  
 }
